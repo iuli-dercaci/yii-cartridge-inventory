@@ -1,0 +1,13 @@
+*.zip
+.idea/*
+app/protected/runtime/*
+app/protected/tests/*
+assets/*
+!assets/.gitignore
+protected/runtime/*
+protected/data/_*.db
+protected/data/test*.db
+protected/data/*.sql
+protected/tests/*
+themes/classic/views/
+!.gitkeep
