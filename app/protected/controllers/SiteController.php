@@ -43,7 +43,6 @@ class SiteController extends Controller
             $criteria['condition'] = 't.storage_id = :storage_id';
             $criteria['params'] = array(':storage_id' => Yii::app()->user->storage_id);
         }
-        var_dump($user);
         $dataProvider = new CActiveDataProvider('CartridgeInventory', array(
             'criteria' => $criteria,
             'pagination' => array(
