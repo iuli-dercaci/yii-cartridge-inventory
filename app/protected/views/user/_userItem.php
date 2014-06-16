@@ -3,26 +3,30 @@
  * @author Iuli Dercaci <iuli.dercaci@site-me.info>
  * Date: 09.06.14
  *
- * @var $data Storage
+ * @var $user User
  */
+$user = $data->name;
 ?>
 <li class="inner-rows">
     <ul class="list-inline item-list">
-        <li class="col-xs-3 col-xs-offset-1">
-            <?php echo $data->name; ?>
+        <li class="col-xs-3">
+            <?php echo $user->l_name; ?> <?php echo $user->f_name; ?>
         </li>
         <li class="col-xs-3 text-muted text-small">
             <?php
-            $roles = Yii::app()->authManager->getRoles($data->id);
+            $roles = Yii::app()->authManager->getRoles($data->name->id);
             echo $roles ? reset($roles)->description : '';
             ?>
         </li>
-        <li class="col-xs-5">
+        <li class="col-xs-2 text-muted text-small">
+            <?php echo $user->email; ?>
+        </li>
+        <li class="col-xs-4">
             <?php
             echo CHtml::button('смена пароля', array(
                 'class' => 'btn btn-primary btn-xs',
                 'submit' => array('user/updatePassword'),
-                'params' => array('id' => $data->id)
+                'params' => array('id' => $user->id)
             ));
             ?>
             &nbsp;
@@ -30,7 +34,7 @@
             echo CHtml::button('редактировать', array(
                 'class' => 'btn btn-primary btn-xs',
                 'submit' => array('user/edit'),
-                'params' => array('id' => $data->id)
+                'params' => array('id' => $user->id)
             ));
             ?>
             &nbsp;
@@ -38,7 +42,7 @@
             echo CHtml::button('удалить', array(
                 'class' => 'btn btn-danger btn-xs',
                 'submit' => array('user/delete'),
-                'params' => array('id' => $data->id),
+                'params' => array('id' => $user->id),
                 'confirm' => 'Вы уверены, что хотите удалить этого пользователя'
             ));
             ?>

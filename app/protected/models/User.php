@@ -18,6 +18,7 @@
  */
 class User extends CActiveRecord
 {
+    public $repeat;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -153,15 +154,9 @@ class User extends CActiveRecord
 
     public function getFullNameList($includeAdmin = false)
     {
-        $data = $this->findAll(array(
+        return $this->findAll(array(
             'condition' => $includeAdmin ? '1' : "role <> 'admin'",
-            'select' => array('id', 'f_name', 'l_name'),
             'order' => 'l_name'
         ));
-        $users = array();
-        foreach ($data as $user) {
-            $users[$user->id] = sprintf('%s %s', $user->f_name, $user->l_name);
-        }
-        return $users;
     }
 }

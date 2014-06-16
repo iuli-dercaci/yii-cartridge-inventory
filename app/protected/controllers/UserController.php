@@ -126,7 +126,6 @@ class UserController extends Controller
             'Управление пользователями' => '/user/index',
             $this->title
         );
-        $users = User::model()->getFullNameList(Yii::app()->user->role == 'admin');
         $model = null;
         if (Yii::app()->request->getPost('id') !== null) {
             $model = User::model()->findByPk(Yii::app()->request->getPost('id'));
@@ -146,6 +145,6 @@ class UserController extends Controller
             }
         }
 
-        $this->render('updatePassword', compact('model', 'users'));
+        $this->render('updatePassword', compact('model'));
     }
 } 
