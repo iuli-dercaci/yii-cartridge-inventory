@@ -17,7 +17,7 @@
     <?php
     $this->widget('zii.widgets.grid.CGridView', array(
         'dataProvider' => $dataProvider,
-        'template' => '{pager}{items}',
+        'template' => '{items}{pager}',
         'summaryText' => '{start} - {end} из {count}',
         'htmlOptions' => array(
             'class' => ''
@@ -73,7 +73,6 @@
                 'headerHtmlOptions' => array(
                     'class' => 'col-xs-1',
                 ),
-
             ),
             array(
                 'name' => '',

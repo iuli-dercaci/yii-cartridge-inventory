@@ -94,6 +94,6 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'iuli.dercaci@gmail.com',
-        'cartridgePerPage' => 25
+        'cartridgePerPage' => 10
 	),
 );
