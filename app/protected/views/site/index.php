@@ -56,7 +56,7 @@
                 }
             ),
             array(
-                'name' => 'Цех',
+                'name' => 'Месторасположение',
                 'value' => function($data){
                     $name = CHtml::encode($data->storage->name);
                     $descr = CHtml::encode($data->storage->description);
