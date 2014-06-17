@@ -36,20 +36,26 @@ class SiteController extends Controller
         );
         $this->breadcrumbs = array('');
         $user = null;
-        $criteria = array(
-            'with' => array('user', 'storage', 'cartridge'),
-        );
-        if (!Yii::app()->user->checkAccess('level_3')){
-            $criteria['condition'] = 't.storage_id = :storage_id';
-            $criteria['params'] = array(':storage_id' => Yii::app()->user->storage_id);
+        $criteria = new CDbCriteria();
+        $criteria->with = array('user', 'storage', 'cartridge');
+        if (false != ($search = Yii::app()->request->getParam('search'))) {
+            $search = trim(strip_tags($search));
+            if (strlen($search)) {
+                $criteria->addSearchCondition('cartridge.model', $search, true, 'OR');
+                $criteria->addSearchCondition('cartridge.manufacturer', $search, true, 'OR');
+                $criteria->addSearchCondition('cartridge.printer', $search, true, 'OR');
+            }
         }
+        if (!Yii::app()->user->checkAccess('level_3')){
+            $criteria->compare('t.storage_id' , Yii::app()->user->storage_id);
+        }
+
         $dataProvider = new CActiveDataProvider('CartridgeInventory', array(
             'criteria' => $criteria,
             'pagination' => array(
                 'pageSize' => Yii::app()->params['cartridgePerPage'],
             ),
         ));
-
-		$this->render('index', compact('dataProvider'));
+        $this->render('index', compact('dataProvider'));
 	}
 }
