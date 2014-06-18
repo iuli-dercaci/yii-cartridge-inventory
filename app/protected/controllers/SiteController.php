@@ -38,7 +38,7 @@ class SiteController extends Controller
         $user = null;
         $criteria = new CDbCriteria();
         $criteria->with = array('user', 'storage', 'cartridge');
-        if (false != ($search = Yii::app()->request->getParam('search'))) {
+        if (false != ($search = Yii::app()->request->getParam('search-field'))) {
             $search = trim(strip_tags($search));
             if (strlen($search)) {
                 $criteria->addSearchCondition('cartridge.model', $search, true, 'OR');
