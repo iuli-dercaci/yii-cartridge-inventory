@@ -47,7 +47,10 @@ class SiteController extends Controller
             }
         }
         if (!Yii::app()->user->checkAccess('level_3')){
-            $criteria->compare('t.storage_id' , Yii::app()->user->storage_id);
+            $criteria->compare('t.storage_id' ,
+                isset(Yii::app()->user->storage_id) ?
+                    Yii::app()->user->storage_id : 'IS NULL'
+            );
         }
 
         $dataProvider = new CActiveDataProvider('CartridgeInventory', array(
